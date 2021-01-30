@@ -1,8 +1,12 @@
 <template>
     <div>
         <h3>Playlist</h3>
-        <div id="playlist.container">
-            <div v-for="song in songs" :key="song in artist" class="song">
+        <div id="playlist-container">
+            <div v-for="song in songs" 
+                :key="song.artist" 
+                class="song"
+                @click="moveSong(song.artist)"
+                >
                 <h4>{{ song.artist }}</h4>
                 <h5>{{ song.song }}</h5>
             </div>
@@ -15,10 +19,16 @@
         props: {
             songs: {
                 type: Array,
-                required:true,
+                required: true,
             },
         },
-    }
+
+        methods: {
+            moveSong(artist) {
+                this.$emit("songClicked", artist);
+            },
+        },
+    };
 </script>
 
 <style scoped>

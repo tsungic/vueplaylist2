@@ -4,8 +4,11 @@
     <div id="list-container">
       <song-list
         :songs="songlistSongs" 
-        @songCliked="songlistSongClicked"></song-list>
-      <play-list :songs="playlistSongs"></play-list>
+        @songClicked="songlistSongClicked"></song-list>
+
+      <play-list 
+        :songs="playlistSongs"
+        @songClicked="playlistSongClicked"></play-list>
       
     </div>
   </div>
@@ -24,6 +27,7 @@ export default {
   },
   methods: {
   songlistSongClicked(artist) {
+    console.log(artist)
     for(let i=0; i<this.songlistSongs.length; i++) {
       if(this.songlistSongs[i].artist == artist) {
         this.playlistSongs.push(this.songlistSongs[i])
@@ -31,26 +35,34 @@ export default {
       }
     }
     },
-
+  playlistSongClicked(artist) {
+    console.log(artist)
+    for(let i=0; i<this.playlistSongs.length;i++) {
+      if(this.playlistSongs[i].artist == artist) {
+        this.songlistSongs.push(this.playlistSongs[i])
+        this.playlistSongs.splice(i,1);
+      }
+    }
+  },
   },
   data() {
     return {
       songlistSongs: [
         {
-          artist: 'A',
-          song: '1',
+          artist: 'Beyonce',
+          song: 'Dangerously in Love',
         },
         {
-          artist: 'B',
-          song: '2',
+          artist: 'U2',
+          song: 'One',
         },
         {
-          artist: 'C',
-          song: '3',
+          artist: 'Corinne Bailey Rae',
+          song: 'Put Your Records On ',
         },
         {
-          artist: 'D',
-          song: '4',
+          artist: 'Natalie Cole',
+          song: 'This Will Be',
         },
       ],
       playlistSongs:[],

@@ -2,9 +2,8 @@
   <div>
     <h3>Songlist</h3>
     <div id="song-container">
-      <!-- //we dont have a real key yet =song.artist to uniquely identify -->
       <div
-        v-for="song in songs"
+        v-for="song in songs" 
         :key="song.artist"
         class="song"
         @click="moveSong(song.artist)"
